@@ -1,0 +1,13 @@
+Package: mli
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.0.0.9000
+Author: Emily Lisa ekl1@rice.edu, Evan Toler eht2@rice.edu
+Description: Create and fit models using an intuative interface that takes
+  follows a model/model family paradigm. This allows for type safety when handling
+  model and model families separately. This follows an outline of what a model
+  and model family should look like that researchers can follow in the creation
+  of new models.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
