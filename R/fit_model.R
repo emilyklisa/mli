@@ -20,8 +20,10 @@ fitmodel.knn <- function(mod, k=-1, metric='euclidian') {
     b <-all.vars(a)[1]
     test  <- select(testing(data), -starts_with(b))
     mod$truth <- select(testing(data), b)
+    t <- select(train, -starts_with(b))
+    mod$train_data <- train
     knn_preds <- class::knn(test = test,
-                            train = select(train, -starts_with(b)),
+                            train = t,
                             cl = train[[b]],
                             k = mod$k)
   } else {
@@ -32,8 +34,11 @@ fitmodel.knn <- function(mod, k=-1, metric='euclidian') {
     }
     test <- select(testing(data), one_of(vector_of_vars))
     mod$truth <- select(testing(data), b)
+    t <- select(train, one_of(vector_of_vars))
+    print(t)
+    mod$train_data <- train
     knn_preds <- class::knn(test = test,
-                            train = select(train, one_of(vector_of_vars)),
+                            train = t,
                             cl = train[[b]],
                             k = mod$k)
   }

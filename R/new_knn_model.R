@@ -8,6 +8,7 @@ new_knn_model <- function(data=NULL, design=NULL)
     predicted = NULL,
     truth = NULL,
     k = -1,
+    train_data = NULL,
     metric = "euclidian"
   )
 
