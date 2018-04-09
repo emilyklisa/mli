@@ -1,3 +1,0 @@
-data(iris)
-
-cat("Hello")
