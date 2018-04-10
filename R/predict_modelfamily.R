@@ -1,4 +1,4 @@
-predictmodelfamily <- function(mod,new_data) UseMethod("predictmodel")
+predictmodelfamily <- function(mod,new_data) UseMethod("predictmodelfamily")
 predictmodelfamily.default <- function(mod,new_data) {
   cat("in predictmodel.default\n")
   invisible(NULL)
@@ -9,6 +9,7 @@ predictmodelfamily.knn <- function(mod,new_data) {
     best_mod = mod$best_model
     a<- best_mod$design
     b <-all.vars(a)[1]
+    print(best_mod$train_data)
     t <- select(best_mod$train_data, -starts_with(b))
     knn_preds <- class::knn(test = new_data,
                             train = t,
@@ -19,3 +20,5 @@ predictmodelfamily.knn <- function(mod,new_data) {
     return("You must fit the model family before making predictions")
   }
 }
+
+
