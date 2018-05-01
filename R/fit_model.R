@@ -1,10 +1,29 @@
+#' This is a generic function that specifically handles fitting for models. This handles
+#' everything that needs to be done when fitting a model. For objects that do not have a
+#' defined class that specifies the kind of model this simply prints "in fitmodel.default".
+#' @param mod The model object. This will likely be empty in the default case.
+#' @param k The k value. This will likely be empty in the default case.
+#' @param metric The metric. This will likely be empty in the default case.
+#' @export
+#' @examples
+#' fitmodel()
 fitmodel <- function(mod,k,metric) UseMethod("fitmodel")
 fitmodel.default <- function(mod,k,metric) {
   cat("in fitmodel.default\n")
   invisible(NULL)
 }
+
+#' This function specifically handles fitting knn models. This handles
+#' everything that needs to be done when fitting a knn model.
+#' @param mod The knn model.
+#' @param k The k value for the model. The default in this case in -1 which in the function
+#' is changed to the calculation of the square root of the number of rows of data.
+#' @param metric The metric. The default is set to "euclidian".
+#' @export
+#' @return The fitted knn model. This is an object of classes "knn" and "model".
+#' @examples
+#' fitmodel(mod = new_knn_model(data=iris, design = Species ~ .), k=3, metric="euclidian")
 fitmodel.knn <- function(mod, k=-1, metric='euclidian') {
-  #there is no way to actually do anything with the metric for now
   if (k == -1) {
     mod$k <- as.integer(nrow(mod$data)^(1/2))
   } else {
